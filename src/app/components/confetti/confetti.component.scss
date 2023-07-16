@@ -1,0 +1,84 @@
+svg {
+  #confetti {
+    path {
+      transition: 0.3s ease-in-out all;
+      animation: move 1s ease-out forwards;
+    }
+    #r1 {
+      transform: translate(2%, -32%);
+    }
+
+    #r2 {
+      transform: translate(32%, 15%);
+    }
+
+    #r3 {
+      transform: translate(-36%, -25%);
+    }
+
+    #r4 {
+      transform: translate(-5%, 33%);
+    }
+
+    #r5 {
+      transform: translate(-20%, 46%);
+    }
+
+    #r6 {
+      transform: translate(-30%, 26%);
+    }
+
+    #r7 {
+      transform: translate(45%, 33%);
+    }
+
+    #r8 {
+      transform: translate(20%, -45%);
+    }
+
+    #r9 {
+      transform: translate(-41%, 15%);
+    }
+
+    #r10 {
+      transform: translate(35%, -11%);
+    }
+
+    #r11 {
+      transform: translate(-45%, -11%);
+    }
+
+    #r12 {
+      transform: translate(47%, 3%);
+    }
+
+    #r13 {
+      transform: translate(-27%, -37%);
+    }
+
+    #r14 {
+      transform: translate(3%, 47%);
+    }
+
+    #r15 {
+      transform: translate(29%, 44%);
+    }
+
+    #r16 {
+      transform: translate(35%, -30%);
+    }
+  }
+}
+
+@keyframes move {
+  0% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    transform: none;
+  }
+}

@@ -4,11 +4,13 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { MemoryGameComponent } from './pages/memory-game/memory-game.component';
+import { ConfettiComponent } from './components/confetti/confetti.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    MemoryGameComponent
+    MemoryGameComponent,
+    ConfettiComponent
   ],
   imports: [
     BrowserModule,

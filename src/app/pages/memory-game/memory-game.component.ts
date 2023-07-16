@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-
+// declare var Audio: any;
 @Component({
   selector: 'app-memory-game',
   templateUrl: './memory-game.component.html',
@@ -25,21 +25,58 @@ export class MemoryGameComponent implements OnInit {
     '8b',
   ];
   pares: string[] = [];
-  matching: string[] = []
+  matching: string[] = [];
+  points = 100;
+
+  clicky = new Audio();
+  match = new Audio();
 
   constructor() {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.shuffleArray(this.squares);
+    this.clicky.src = 'assets/sound/clicky.wav';
+    this.clicky.load();
+    this.match.src = 'assets/sound/match.wav';
+    this.match.load();
+  }
+
+  shuffleArray(array: string[]) {
+    return array.sort(() => Math.random() - 0.5);
+  }
 
   clickSquare(n: string) {
-    if (this.pares.length == 2) {
-      this.pares = [n];
-    } else {
-      this.pares.push(n);
+    
+    if (this.matching.length < 8) {
+      if (!this.pares.includes(n)) {
+        this.clicky.play();
+        this.clicky.currentTime = 0;
+        if (this.pares.length == 2) {
+          this.pares = [n];
+        } else {
+          this.pares.push(n);
+        }
+        
+        if (this.pares.length == 2 && this.pares[0][0] == this.pares[1][0]) {
+          this.matching.push(n[0]);
+          this.points += 100;
+          this.match.play();
+          this.match.currentTime = 0;
+        } else {
+          this.points -= 10;
+        }
+
+        if (this.matching.length == 8) {
+          console.log('PUNTAJE FINAL: ' + this.points);
+        }
+      }
     }
-    console.log(this.pares);
-    if(this.pares.length == 2 && this.pares[0][0] == this.pares[1][0]){
-      this.matching.push(n[0])
-    }
+  }
+
+  reset() {
+    this.clicky.play();
+    this.matching = [];
+    this.pares = [];
+    this.points = 100;
   }
 }

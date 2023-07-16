@@ -1,11 +1,29 @@
 <section class="memory-game-container">
+  <h1 class="title">Memory Game</h1>
+  <div class="points">
+    <h2 [ngClass]="{ 'final-score': matching.length == 8 }">
+      Score: {{ points }}
+    </h2>
+  </div>
   <div class="box">
-    <div class="square" *ngFor="let s of squares" (click)="clickSquare(s)">
-      <img
-        [src]="'assets/img/fruta_' + s[0] + '.png'"
-        *ngIf="pares.includes(s) || matching.includes(s[0])"
-        [ngClass]="{ matching: matching.includes(s[0]) }"
-      />
+    <div
+      class="square"
+      *ngFor="let s of squares"
+      (click)="clickSquare(s)"
+      [ngClass]="{ matching: matching.includes(s[0]) }"
+    >
+      <div class="key">
+        <img
+          [src]="'assets/img/pixel_fruta_' + s[0] + '.png'"
+          *ngIf="pares.includes(s) || matching.includes(s[0])"
+        />
+      </div>
+      <app-confetti *ngIf="matching.includes(s[0])"></app-confetti>
     </div>
+  </div>
+  <h2 class="reset" (click)="reset()">Reset</h2>
+  <app-confetti class="win" *ngIf="matching.length == 8"></app-confetti>
+  <div class="credits">
+    <a href="https://www.linkedin.com/in/montielrominaemma/" target="_blank">© 2023 Romi M.</a>
   </div>
 </section>
