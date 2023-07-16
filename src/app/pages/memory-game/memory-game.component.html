@@ -1,0 +1,11 @@
+<section class="memory-game-container">
+  <div class="box">
+    <div class="square" *ngFor="let s of squares" (click)="clickSquare(s)">
+      <img
+        [src]="'assets/img/fruta_' + s[0] + '.png'"
+        *ngIf="pares.includes(s) || matching.includes(s[0])"
+        [ngClass]="{ matching: matching.includes(s[0]) }"
+      />
+    </div>
+  </div>
+</section>

@@ -1,0 +1,42 @@
+.memory-game-container {
+    min-height: 100vh;
+    width: 100%;
+    background-color: rgb(21, 15, 48);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    .box {
+        width: 60vh;
+        height: 60vh;
+        padding: 1rem;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-around;
+        align-items: center;
+        border-radius: 1rem;
+        background: linear-gradient(323deg, #5615ac, #ff7948);
+        box-shadow: 3px 3px 17px 0 #0000003b;
+
+        .square {
+            cursor: pointer;
+            width: 23%;
+            aspect-ratio: 1 / 1;
+            border-radius: .5rem;
+            border: 1px solid #20055029;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: inset 5px 9px 10px #0e0a1675;
+            background: #00000014;
+
+            &:hover{
+                background-color: rgba(255, 255, 255, 0.16);
+            }
+
+            img.matching{
+                opacity: .5;
+            }
+        }
+    }
+}
