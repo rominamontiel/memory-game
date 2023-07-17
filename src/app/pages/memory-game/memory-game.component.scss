@@ -8,23 +8,58 @@
   justify-content: center;
   flex-direction: column;
   background: linear-gradient(323deg, #5615ac, #ff7948);
+  // background: url("/assets/img/bg4.png");
   position: relative;
+
+  .style-collection {
+    position: absolute;
+    right: 1rem;
+    top: 1rem;
+
+    img {
+      display: block;
+      height: 38px;
+      margin-bottom: 1rem;
+      cursor: pointer;
+      padding: 3px;
+      border-radius: 50%;
+      border: 2px solid transparent;
+      background: #ffffff59;
+      transition: 0.15s ease-in-out all;
+
+      &.selected {
+        border: 2px solid rgba(255, 255, 255, 0.68);
+        box-shadow: 0px 0px 10px #fff789;
+      }
+    }
+  }
 
   .title {
     font-weight: 400;
     color: white;
     font-size: 2.4rem;
+    text-shadow: 2px 2px 1px #00000059;
   }
 
   .points {
     color: white;
     text-align: center;
+    width: 60vh;
 
     h2 {
       font-weight: 400;
+      text-shadow: 2px 2px 1px #00000059;
+      padding: 5px 1rem 8px 1rem;
+      border: 2px solid transparent;
+      transition: 0.3s;
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 0.5rem;
 
       &.final-score {
-        text-shadow: 1px 2px 7px rgba(187, 255, 249, 0.65);
+        border: 2px solid white;
+        box-shadow: 2px 2px 0px #00000059;
+        border-radius: 8px;
       }
     }
   }
@@ -38,7 +73,7 @@
     justify-content: space-around;
     align-items: center;
     border-radius: 1rem;
-    box-shadow: 9px 12px 10px 0 rgba(0, 0, 0, 0.231);
+    box-shadow: 3px 8px 8px 0 rgba(0, 0, 0, 0.231);
     background-color: #f4f5f6;
 
     .square {
@@ -74,6 +109,10 @@
         img {
           max-width: 60%;
           animation: showFruit 0.3s ease-in-out forwards;
+
+          &.win-game {
+            opacity: 1 !important;
+          }
         }
       }
 
@@ -103,7 +142,7 @@
     }
   }
 
-  .win {
+  .win-confetti {
     display: block;
     position: absolute;
     left: 50%;
@@ -127,9 +166,12 @@
     padding: 0.2rem 1rem 0.4rem 1rem;
     border-radius: 8px;
     margin-top: 2rem;
+    text-shadow: 2px 2px 1px #00000059;
+    border: 2px solid transparent;
 
     &:hover {
-      text-shadow: 1px 2px 7px #bbfff9;
+      border: 2px solid white;
+      box-shadow: 2px 2px 0px #00000059;
     }
 
     &:active {
@@ -139,13 +181,14 @@
 
   .credits {
     position: absolute;
-    bottom: 0.6rem;
+    bottom: 0.3rem;
     right: 0.5rem;
-    font-size: 9px;
+    font-size: 10px;
 
     a {
       color: rgba(255, 255, 255, 0.451);
       text-decoration: none;
+      text-shadow: 1px 1px 0px #00000059;
     }
   }
 }
@@ -175,15 +218,32 @@
 
 @media (max-width: 800px) {
   .memory-game-container {
+    .style-collection {
+      img {
+        margin-left: 0.8rem;
+        margin-bottom: 0;
+        display: inline;
+      }
+    }
+
+    .title {
+      font-size: 32px;
+      margin-top: 3rem;
+    }
+
+    .points{
+      width: 90vw;
+    }
+
     .box {
       width: 90vw;
       height: 90vw;
 
-      .square{
+      .square {
         border-radius: 2vh;
 
-        .key{
-            border-radius: 1.7vh;
+        .key {
+          border-radius: 1.7vh;
         }
       }
     }

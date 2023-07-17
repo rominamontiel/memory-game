@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { interval, Subscription } from 'rxjs';
 // declare var Audio: any;
 @Component({
   selector: 'app-memory-game',
@@ -27,9 +28,20 @@ export class MemoryGameComponent implements OnInit {
   pares: string[] = [];
   matching: string[] = [];
   points = 100;
+  startGame = 0; //0 o 1
 
   clicky = new Audio();
   match = new Audio();
+
+  readonly PIXEL_FRUIT = 'pixel_fruit';
+  readonly REAL_FRUIT = 'real_fruit';
+  readonly POKEMON = 'pokemon';
+  styleCollection = this.POKEMON;
+
+  minutes: number = 0;
+  seconds: number = 0;
+  finalTime = '';
+  private timerSubscription!: Subscription;
 
   constructor() {}
 
@@ -46,8 +58,10 @@ export class MemoryGameComponent implements OnInit {
   }
 
   clickSquare(n: string) {
-    
     if (this.matching.length < 8) {
+      if (this.startGame == 0) this.startTimer();
+      this.startGame += 1;
+
       if (!this.pares.includes(n)) {
         this.clicky.play();
         this.clicky.currentTime = 0;
@@ -56,7 +70,7 @@ export class MemoryGameComponent implements OnInit {
         } else {
           this.pares.push(n);
         }
-        
+
         if (this.pares.length == 2 && this.pares[0][0] == this.pares[1][0]) {
           this.matching.push(n[0]);
           this.points += 100;
@@ -67,7 +81,13 @@ export class MemoryGameComponent implements OnInit {
         }
 
         if (this.matching.length == 8) {
-          console.log('PUNTAJE FINAL: ' + this.points);
+          const min = this.minutes.toString();
+          const sec = this.seconds < 10 ? '0' + this.seconds : this.seconds;
+          this.finalTime = min + ':' + sec;
+          console.log(
+            'PUNTAJE FINAL: ' + this.points + ' | TIEMPO: ' + this.finalTime
+          );
+          this.stopTimer();
         }
       }
     }
@@ -75,8 +95,30 @@ export class MemoryGameComponent implements OnInit {
 
   reset() {
     this.clicky.play();
+    this.shuffleArray(this.squares);
     this.matching = [];
     this.pares = [];
     this.points = 100;
+    this.startGame = 0;
+    this.stopTimer();
+  }
+
+  startTimer() {
+    this.timerSubscription = interval(1000).subscribe(() => {
+      this.seconds++;
+      this.points -= 1;
+      if (this.seconds === 60) {
+        this.seconds = 0;
+        this.minutes++;
+      }
+    });
+  }
+
+  stopTimer() {
+    if (this.timerSubscription) {
+      this.timerSubscription.unsubscribe();
+      this.seconds = 0;
+      this.minutes = 0;
+    }
   }
 }

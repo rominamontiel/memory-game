@@ -1,10 +1,38 @@
 <section class="memory-game-container">
+  <!-- BOTONES PARA ELEGIR COLECCIÓN -->
+  <div class="style-collection">
+    <img
+      src="assets/img/pokemon/1.png"
+      (click)="styleCollection = POKEMON"
+      [ngClass]="{ selected: styleCollection == POKEMON }"
+    />
+    <img
+      src="assets/img/pixel_fruit/2.png"
+      (click)="styleCollection = PIXEL_FRUIT"
+      [ngClass]="{ selected: styleCollection == PIXEL_FRUIT }"
+    />
+    <img
+      src="assets/img/real_fruit/2.png"
+      (click)="styleCollection = REAL_FRUIT"
+      [ngClass]="{ selected: styleCollection == REAL_FRUIT }"
+    />
+  </div>
+
+  <!-- TITULO -->
   <h1 class="title">Memory Game</h1>
+
+  <!-- SCORE -->
   <div class="points">
     <h2 [ngClass]="{ 'final-score': matching.length == 8 }">
       Score: {{ points }}
+      <span *ngIf="matching.length < 8">
+        {{ minutes }}:{{ seconds < 10 ? "0" + seconds : seconds }}
+      </span>
+      <span *ngIf="matching.length == 8">{{ finalTime }}</span>
     </h2>
   </div>
+
+  <!-- TABLERO -->
   <div class="box">
     <div
       class="square"
@@ -14,16 +42,26 @@
     >
       <div class="key">
         <img
-          [src]="'assets/img/pixel_fruta_' + s[0] + '.png'"
+          [ngClass]="{ 'win-game': matching.length == 8 }"
+          [src]="'assets/img/' + styleCollection + '/' + s[0] + '.png'"
           *ngIf="pares.includes(s) || matching.includes(s[0])"
         />
       </div>
       <app-confetti *ngIf="matching.includes(s[0])"></app-confetti>
     </div>
   </div>
+  
+  <!-- RESET -->
   <h2 class="reset" (click)="reset()">Reset</h2>
-  <app-confetti class="win" *ngIf="matching.length == 8"></app-confetti>
+
+  <app-confetti
+    class="win-confetti"
+    *ngIf="matching.length == 8"
+  ></app-confetti>
+
   <div class="credits">
-    <a href="https://www.linkedin.com/in/montielrominaemma/" target="_blank">© 2023 Romi M.</a>
+    <a href="https://www.linkedin.com/in/montielrominaemma/" target="_blank"
+      >© 2023 Romi M.</a
+    >
   </div>
 </section>
