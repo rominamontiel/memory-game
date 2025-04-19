@@ -7,8 +7,8 @@
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  background: linear-gradient(323deg, #5615ac, #ff7948);
-  // background: url("/assets/img/bg4.png");
+  // background: linear-gradient(323deg, #5615ac, #ff7948);
+  background: url("/assets/img/bg4.png");
   position: relative;
 
   .style-collection {
@@ -22,14 +22,14 @@
       margin-bottom: 1rem;
       cursor: pointer;
       padding: 3px;
-      border-radius: 50%;
+      border-radius: 0.5rem;
       border: 2px solid transparent;
-      background: #ffffff59;
       transition: 0.15s ease-in-out all;
 
       &.selected {
         border: 2px solid rgba(255, 255, 255, 0.68);
-        box-shadow: 0px 0px 10px #fff789;
+        // box-shadow: 0px 0px 10px #fff789;
+        box-shadow: 2px 2px 0px #00000059;
       }
     }
   }
@@ -60,6 +60,7 @@
         border: 2px solid white;
         box-shadow: 2px 2px 0px #00000059;
         border-radius: 8px;
+        background: rgba(193, 150, 111, 0.5);
       }
     }
   }
@@ -200,12 +201,13 @@
     color: white;
     cursor: pointer;
     text-shadow: 0px 0px 0px rgb(0, 0, 0, 0);
+    text-shadow: 1px 1px 0px #00000059;
     transition: all 0.1s ease-in-out;
     padding: 0.2rem 1rem 0.4rem 1rem;
     border-radius: 8px;
     user-select: none;
 
-    &:hover{
+    &:hover {
       background-color: rgba(255, 255, 255, 0.3);
     }
 

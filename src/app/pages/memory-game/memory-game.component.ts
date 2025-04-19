@@ -129,6 +129,7 @@ export class MemoryGameComponent implements OnInit {
     }
   }
 
+  //SERVICIO: GUARDAR PUNTAJE
   saveScore(name: string) {
     this.seeModalSaveName = false;
 
@@ -146,6 +147,7 @@ export class MemoryGameComponent implements OnInit {
     });
   }
 
+  //SERVICIO: VER MEJORES PUNTAJES
   seeListScore() {
     this.seeModalScoreList = true;
     this.isLoadingListScore = true;
