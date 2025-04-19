@@ -41,9 +41,12 @@ export class ScoreListComponent implements OnInit {
         })
         .slice(0, 10);
 
-      this.finalList[0].name = '🥇 ' + this.finalList[0].name;
-      this.finalList[1].name = '🥈 ' + this.finalList[1].name;
-      this.finalList[2].name = '🥉 ' + this.finalList[2].name;
+      if (this.finalList[0])
+        this.finalList[0].name = '🥇 ' + this.finalList[0].name;
+      if (this.finalList[1])
+        this.finalList[1].name = '🥈 ' + this.finalList[1].name;
+      if (this.finalList[2])
+        this.finalList[2].name = '🥉 ' + this.finalList[2].name;
     }
   }
 

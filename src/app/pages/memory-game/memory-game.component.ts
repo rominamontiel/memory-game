@@ -139,8 +139,6 @@ export class MemoryGameComponent implements OnInit {
       time: this.finalTime ? this.finalTime : '0:00',
     };
 
-    console.log(BODY);
-
     this.scoreService.postScore(BODY).subscribe({
       next: () => {
         this.alreadySavedScore = true;
@@ -154,7 +152,6 @@ export class MemoryGameComponent implements OnInit {
 
     this.scoreService.getScores().subscribe({
       next: (response) => {
-        console.log(response);
         this.scoreList = response;
         this.isLoadingListScore = false;
       },
