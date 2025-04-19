@@ -158,20 +158,55 @@
   }
 
   .reset {
+    display: flex;
+
+    h2 {
+      font-weight: 400;
+      color: white;
+      cursor: pointer;
+      text-shadow: 0px 0px 0px rgb(0, 0, 0, 0);
+      transition: all 0.2s ease-in-out;
+      padding: 0.2rem 1rem 0.4rem 1rem;
+      border-radius: 8px;
+      margin-top: 2rem;
+      text-shadow: 2px 2px 1px #00000059;
+      border: 2px solid transparent;
+      user-select: none;
+
+      &:hover {
+        border: 2px solid white;
+        box-shadow: 2px 2px 0px #00000059;
+      }
+
+      &:active {
+        transform: scale(0.9);
+      }
+
+      &.inactive {
+        pointer-events: none;
+        opacity: 0.3;
+      }
+    }
+  }
+
+  .button-see-scores {
+    position: absolute;
+    top: 1rem;
+    left: 1rem;
+    font-size: 18px;
+    border: 2px solid white;
+    box-shadow: 2px 2px 0px #00000059;
+    font-weight: 400;
     color: white;
     cursor: pointer;
     text-shadow: 0px 0px 0px rgb(0, 0, 0, 0);
-    transition: all 0.2s ease-in-out;
-    font-weight: 400;
+    transition: all 0.1s ease-in-out;
     padding: 0.2rem 1rem 0.4rem 1rem;
     border-radius: 8px;
-    margin-top: 2rem;
-    text-shadow: 2px 2px 1px #00000059;
-    border: 2px solid transparent;
+    user-select: none;
 
-    &:hover {
-      border: 2px solid white;
-      box-shadow: 2px 2px 0px #00000059;
+    &:hover{
+      background-color: rgba(255, 255, 255, 0.3);
     }
 
     &:active {
@@ -231,7 +266,7 @@
       margin-top: 3rem;
     }
 
-    .points{
+    .points {
       width: 90vw;
     }
 

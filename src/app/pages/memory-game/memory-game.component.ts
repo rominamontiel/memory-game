@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { interval, Subscription } from 'rxjs';
+import { ScoreModelGetBE, ScoreModelPostBE } from 'src/app/models/score.model';
+import { ScoreService } from 'src/app/services/score.service';
 // declare var Audio: any;
 @Component({
   selector: 'app-memory-game',
@@ -43,7 +45,14 @@ export class MemoryGameComponent implements OnInit {
   finalTime = '';
   private timerSubscription!: Subscription;
 
-  constructor() {}
+  seeModalSaveName = false;
+  today = new Date().toISOString().split('T')[0];
+  scoreList: ScoreModelGetBE[] | undefined;
+  seeModalScoreList = false;
+  isLoadingListScore = false;
+  alreadySavedScore = false;
+
+  constructor(private scoreService: ScoreService) {}
 
   ngOnInit(): void {
     this.shuffleArray(this.squares);
@@ -84,9 +93,6 @@ export class MemoryGameComponent implements OnInit {
           const min = this.minutes.toString();
           const sec = this.seconds < 10 ? '0' + this.seconds : this.seconds;
           this.finalTime = min + ':' + sec;
-          console.log(
-            'PUNTAJE FINAL: ' + this.points + ' | TIEMPO: ' + this.finalTime
-          );
           this.stopTimer();
         }
       }
@@ -101,6 +107,7 @@ export class MemoryGameComponent implements OnInit {
     this.points = 100;
     this.startGame = 0;
     this.stopTimer();
+    this.alreadySavedScore = false;
   }
 
   startTimer() {
@@ -120,5 +127,37 @@ export class MemoryGameComponent implements OnInit {
       this.seconds = 0;
       this.minutes = 0;
     }
+  }
+
+  saveScore(name: string) {
+    this.seeModalSaveName = false;
+
+    const BODY: ScoreModelPostBE = {
+      date: this.today,
+      name: name,
+      score: this.points,
+      time: this.finalTime ? this.finalTime : '0:00',
+    };
+
+    console.log(BODY);
+
+    this.scoreService.postScore(BODY).subscribe({
+      next: () => {
+        this.alreadySavedScore = true;
+      },
+    });
+  }
+
+  seeListScore() {
+    this.seeModalScoreList = true;
+    this.isLoadingListScore = true;
+
+    this.scoreService.getScores().subscribe({
+      next: (response) => {
+        console.log(response);
+        this.scoreList = response;
+        this.isLoadingListScore = false;
+      },
+    });
   }
 }

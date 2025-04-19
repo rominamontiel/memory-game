@@ -1,0 +1,21 @@
+<div class="modal-score-list">
+  <div class="bg-modal" (click)="onClickClose()"></div>
+  <div class="modal">
+    <h2>top 10 scores</h2>
+    <ng-container *ngIf="!isLoading">
+      <div class="list">
+        <div class="row" *ngFor="let item of finalList">
+          <div class="col">
+            <p>{{ item.name }}</p>
+            <!-- <span>{{ formatDate(item.date) }}</span> -->
+          </div>
+          <div class="col">
+            <p>{{ item.score }}</p>
+            <span>{{ item.time }}</span>
+          </div>
+        </div>
+      </div>
+    </ng-container>
+    <div class="loading" *ngIf="isLoading">Cargando...</div>
+  </div>
+</div>

@@ -50,14 +50,24 @@
       <app-confetti *ngIf="matching.includes(s[0])"></app-confetti>
     </div>
   </div>
-  
+
   <!-- RESET -->
-  <h2 class="reset" (click)="reset()">Reset</h2>
+  <div class="reset">
+    <h2 (click)="reset()">Reset</h2>
+    <h2
+      (click)="seeModalSaveName = true"
+      [ngClass]="{ inactive: matching.length < 8 || alreadySavedScore }"
+    >
+      SAVE
+    </h2>
+  </div>
 
   <app-confetti
     class="win-confetti"
     *ngIf="matching.length == 8"
   ></app-confetti>
+
+  <div class="button-see-scores" (click)="seeListScore()">scores</div>
 
   <div class="credits">
     <a href="https://www.linkedin.com/in/montielrominaemma/" target="_blank"
@@ -65,3 +75,16 @@
     >
   </div>
 </section>
+
+<app-save-score-modal
+  *ngIf="seeModalSaveName"
+  (onSaveName)="saveScore($event)"
+  (closeModal)="seeModalSaveName = false"
+></app-save-score-modal>
+
+<app-score-list
+  *ngIf="seeModalScoreList"
+  [scoreList]="scoreList"
+  (closeModal)="seeModalScoreList = false"
+  [isLoading]="isLoadingListScore"
+></app-score-list>
