@@ -63,6 +63,9 @@ export class MemoryGameComponent implements OnInit {
     this.clicky.load();
     this.match.src = 'assets/sound/match.wav';
     this.match.load();
+
+    //DESPERTAR EL SERVIDOR (API)
+    this.scoreService.getScores().subscribe();
   }
 
   shuffleArray(array: string[]) {
