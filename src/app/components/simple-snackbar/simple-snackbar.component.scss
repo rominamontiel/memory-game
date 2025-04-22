@@ -1,0 +1,36 @@
+.snackbar-container {
+  position: fixed;
+  z-index: 100;
+  left: 50%;
+  top: 1rem;
+  transform: translateX(-50%);
+
+  p {
+    width: auto;
+    height: 2rem;
+    background-color: rgb(84, 84, 84);
+    display: flex;
+    gap: 1rem;
+    color: white;
+    align-items: center;
+    justify-content: center;
+    padding: 0 1rem;
+    font-size: 14px;
+    border-radius: 4px;
+    box-shadow: 2px 2px 0px #00000059;
+    opacity: 0;
+    animation: fade-in-snackbar 0.3s ease-in-out forwards;
+    white-space: nowrap;
+  }
+}
+
+@keyframes fade-in-snackbar {
+  0% {
+    opacity: 0;
+    transform: translateY(2rem);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

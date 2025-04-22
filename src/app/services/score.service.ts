@@ -7,8 +7,7 @@ import { ScoreModelPostBE } from '../models/score.model';
   providedIn: 'root',
 })
 export class ScoreService {
-  private apiUrl =
-    'https://680303dd0a99cb7408eae952.mockapi.io/memory-game/scores';
+  private apiUrl = 'https://memory-game-service.onrender.com/scores';
 
   constructor(private http: HttpClient) {}
 

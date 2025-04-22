@@ -49,8 +49,11 @@ export class MemoryGameComponent implements OnInit {
   today = new Date().toISOString().split('T')[0];
   scoreList: ScoreModelGetBE[] | undefined;
   seeModalScoreList = false;
-  isLoadingListScore = false;
   alreadySavedScore = false;
+  isLoadingListScore = false;
+  isLoadingSaveScore = false;
+  msgIsLoading = '';
+  isVisibleErrorSnackbar = false;
 
   constructor(private scoreService: ScoreService) {}
 
@@ -131,6 +134,8 @@ export class MemoryGameComponent implements OnInit {
 
   //SERVICIO: GUARDAR PUNTAJE
   saveScore(name: string) {
+    this.msgIsLoading = 'Guardando puntaje...';
+    this.isLoadingSaveScore = true;
     this.seeModalSaveName = false;
 
     const BODY: ScoreModelPostBE = {
@@ -143,20 +148,41 @@ export class MemoryGameComponent implements OnInit {
     this.scoreService.postScore(BODY).subscribe({
       next: () => {
         this.alreadySavedScore = true;
+        this.isLoadingSaveScore = false;
+        this.msgIsLoading = '';
+      },
+      error: () => {
+        this.isLoadingSaveScore = false;
+        this.msgIsLoading = '';
+        this.showSnackbarError();
       },
     });
   }
 
   //SERVICIO: VER MEJORES PUNTAJES
   seeListScore() {
-    this.seeModalScoreList = true;
+    this.msgIsLoading = 'Obteniendo puntajes...';
     this.isLoadingListScore = true;
 
     this.scoreService.getScores().subscribe({
       next: (response) => {
         this.scoreList = response;
         this.isLoadingListScore = false;
+        this.msgIsLoading = '';
+        this.seeModalScoreList = true;
+      },
+      error: () => {
+        this.isLoadingListScore = false;
+        this.msgIsLoading = '';
+        this.showSnackbarError();
       },
     });
+  }
+
+  showSnackbarError() {
+    this.isVisibleErrorSnackbar = true;
+    setTimeout(() => {
+      this.isVisibleErrorSnackbar = false;
+    }, 3000);
   }
 }

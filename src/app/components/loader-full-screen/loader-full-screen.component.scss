@@ -1,0 +1,47 @@
+.loader-full-screen {
+  position: fixed;
+  top: 0;
+  z-index: 100;
+  background-color: rgba(255, 255, 255, 0.95);
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  animation: fade-in-screen 0.2s ease-in-out forwards;
+
+  .gif-container {
+    opacity: 0;
+    animation: fade-in-pikachu 0.3s ease-in-out forwards;
+
+    #gif-mov {
+      width: 100px;
+    }
+  }
+
+  p {
+    color: rgb(0, 0, 0);
+  }
+}
+
+@keyframes fade-in-screen {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes fade-in-pikachu {
+  0% {
+    opacity: 0;
+    transform: translateX(-2rem);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}

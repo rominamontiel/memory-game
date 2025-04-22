@@ -9,6 +9,8 @@ import { SaveScoreModalComponent } from './components/save-score-modal/save-scor
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { ScoreListComponent } from './components/score-list/score-list.component';
+import { LoaderFullScreenComponent } from './components/loader-full-screen/loader-full-screen.component';
+import { SimpleSnackbarComponent } from './components/simple-snackbar/simple-snackbar.component';
 
 @NgModule({
   declarations: [
@@ -17,6 +19,8 @@ import { ScoreListComponent } from './components/score-list/score-list.component
     ConfettiComponent,
     SaveScoreModalComponent,
     ScoreListComponent,
+    LoaderFullScreenComponent,
+    SimpleSnackbarComponent,
   ],
   imports: [BrowserModule, AppRoutingModule, FormsModule, HttpClientModule],
   providers: [],

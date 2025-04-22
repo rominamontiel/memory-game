@@ -67,8 +67,10 @@
     *ngIf="matching.length == 8"
   ></app-confetti>
 
+  <!-- VER PUNTAJES -->
   <div class="button-see-scores" (click)="seeListScore()">scores</div>
 
+  <!-- CREDITOS -->
   <div class="credits">
     <a href="https://www.linkedin.com/in/montielrominaemma/" target="_blank"
       >© 2023 Romi M.</a
@@ -88,3 +90,10 @@
   (closeModal)="seeModalScoreList = false"
   [isLoading]="isLoadingListScore"
 ></app-score-list>
+
+<app-loader-full-screen
+  *ngIf="isLoadingListScore || isLoadingSaveScore"
+  [msg]="msgIsLoading"
+></app-loader-full-screen>
+
+<app-simple-snackbar *ngIf="isVisibleErrorSnackbar"></app-simple-snackbar>
